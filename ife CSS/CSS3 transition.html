@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>css3 过渡</title>
+  <style>
+
+    #wrap{
+      width: 300px;
+      margin: 50px auto;
+    }
+    .text{
+      font-size: 25px;
+      width: 110px;
+      height: 40px;
+      text-align: center;
+      font-weight: bold;
+      transition: color 0.5s;
+    }
+    #btn{
+      margin-top: 30px;
+      cursor: pointer;
+
+    }
+    #btn {
+      font-size: 20px;
+      text-decoration: none;
+      color: black;
+      border: 1px solid #e8e8e8;
+      border-radius: 5px;
+      display: inline-block;
+      padding: 3px 10px;
+      box-shadow: 1px 1px #bbbbbb;
+    }
+    .blue{
+      margin: 0 auto;
+      width: 0;
+      height: 5px;
+      background-color: dodgerblue;
+      transition: width 1s cubic-bezier(.22,.59,.53,.87);
+
+    }
+
+  </style>
+</head>
+<body>
+<div id="wrap">
+  <div id="text" class="text">
+    前端学院
+    <div id="blue" class="blue"></div>
+  </div>
+
+  <div id="btn">切换样式</div>
+</div>
+<script type="text/javascript">
+window.onload = function () {
+  init()
+}
+function init() {
+  let doc = document
+  let text = doc.getElementById('text')
+  let blue = doc.getElementById('blue')
+  let btn = doc.getElementById('btn')
+  let flag = true
+  btn.onclick = function () {
+
+    if(flag){
+      blue.style.width = '100%'
+      text.style.color = 'dodgerblue'
+    }else{
+      blue.style.width = '0'
+      text.style.color = 'black'
+    }
+    flag = !flag
+  }
+
+}
+</script>
+</body>
+</html>
