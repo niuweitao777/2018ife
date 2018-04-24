@@ -15,7 +15,7 @@
       height: 40px;
       text-align: center;
       font-weight: bold;
-      transition: color 0.5s;
+      transition: color 0.5s; /*过渡属性名 时间*/
     }
     #btn{
       margin-top: 30px;
@@ -37,7 +37,7 @@
       width: 0;
       height: 5px;
       background-color: dodgerblue;
-      transition: width 1s cubic-bezier(.22,.59,.53,.87);
+      transition: width 1s cubic-bezier(.22,.59,.53,.87); /*过渡属性名 时间 贝塞尔曲线*/
 
     }
 
@@ -56,14 +56,18 @@
 window.onload = function () {
   init()
 }
+//初始化
 function init() {
   let doc = document
+  //获取元素
   let text = doc.getElementById('text')
   let blue = doc.getElementById('blue')
   let btn = doc.getElementById('btn')
+  //开关
   let flag = true
+  //点击事件
   btn.onclick = function () {
-
+    //判断开关，改变样式
     if(flag){
       blue.style.width = '100%'
       text.style.color = 'dodgerblue'
@@ -71,6 +75,7 @@ function init() {
       blue.style.width = '0'
       text.style.color = 'black'
     }
+    //更新开关
     flag = !flag
   }
 
