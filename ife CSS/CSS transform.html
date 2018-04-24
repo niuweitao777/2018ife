@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>No.2 - 初步接触 CSS 2D 变形</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #wrap{
+      position: relative;
+      width: 677px;
+      height: 237px;
+      margin: 50px auto;
+    }
+    .box{
+      position: absolute;
+      background-color: #f7f6f6;
+      border: 1px solid #ebebeb;
+      width: 60px;
+      height: 68px;
+      box-sizing: border-box;
+      line-height: 60px;
+      text-align: center;
+    }
+    .box0{
+      top: 21px;
+      left: 18px;
+
+
+    }
+    .box1{
+      top: 27px;
+      left: 109px;
+
+      transform: skew(30deg);
+    }
+    .box2{
+      top: 27px;
+      left: 203px;
+
+      transform: scaleX(0.5);
+    }
+    .box3{
+      transform: rotate(45deg);
+      top: 27px;
+      left: 310px;
+    }
+    .box4{
+      top: 33px;
+      left: 423px;
+      transform: translate(10px, 20px);
+
+    }
+    .box5{
+      top: 30px;
+      left: 555px;
+      transform:scaleX(0.5)  skew(30deg) rotate(45deg) translate(10px, 20px);
+    }
+  </style>
+</head>
+<body>
+<!--FZYOUH_508R-->
+<div id="wrap">
+  <div class="box0 box">box0</div>
+  <div class="box1 box">box1</div>
+  <div class="box2 box">box2</div>
+  <div class="box3 box">box3</div>
+  <div class="box4 box">box4</div>
+  <div class="box5 box">box5</div>
+</div>
+</body>
+</html>
