@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>No.4 - 3D 空间的卡片翻转动效</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .wrap{
+      position: relative;
+      margin: 50px auto;
+      width: 250px;
+      height: 100%;
+      transform-style: preserve-3d;//*启3D空间*/
+      transition: transform 1s;
+
+    }
+    .box1, .box2{
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .box1{
+      z-index: 1;
+
+    }
+    .box2{
+      transform: rotateY(180deg)/*翻转后面图片*/
+    }
+    .wrap:hover{
+      transform: rotateY(180deg);/*翻转整个盒子*/
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="box1"><img src="up.jpg" alt="A"></div>
+  <div class="box2"><img src="down1.jpg" alt="B"></div>
+</div>
+</body>
+</html>
