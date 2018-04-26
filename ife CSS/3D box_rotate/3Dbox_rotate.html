@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>No.5 - 纯 CSS 制作绕中轴旋转的立方体</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .innerBox{
+      /*position: relative;*/
+      margin: 100px auto;
+      width: 200px;
+      height: 200px;
+      perspective: 500px;
+
+    }
+    .wrap{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      transform-style: preserve-3d;
+      transform-origin: 50% 50% -50px;
+      transform: rotate3d(0,1,0,30deg);
+    }
+    .box{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background-color: rgba(0, 0, 0, 0.29);
+      border: 1px solid #000;
+      text-align: center;
+      line-height: 50px;
+    }
+    .box1{}
+    .box2{
+      top: -100px;
+      transform-origin: bottom;
+      transform: rotateX(90deg);
+    }
+    .box3{
+      left: 100px;
+      transform-origin: left;
+      transform: rotateY(90deg);
+    }
+    .box4{
+      top: 100px;
+      transform-origin: top;
+      transform: rotateX(-90deg);
+    }
+    .box5{
+      left: -100px;
+      transform-origin: right;
+      transform: rotateY(-90deg);
+    }
+    .box6{
+      transform: translateZ(-100px)
+
+    }
+  </style>
+</head>
+<body>
+<div class="innerBox">
+  <div class="wrap">
+
+  <div class="box1 box">1</div>
+  <div class="box2 box">2</div>
+  <div class="box3 box">3</div>
+  <div class="box4 box">4</div>
+  <div class="box5 box">5</div>
+  <div class="box6 box">6</div>
+
+</div>
+</div>
+</body>
+</html>
