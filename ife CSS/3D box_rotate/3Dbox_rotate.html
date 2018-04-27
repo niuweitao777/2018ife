@@ -11,9 +11,9 @@
     .innerBox{
       /*position: relative;*/
       margin: 100px auto;
-      width: 200px;
-      height: 200px;
-      perspective: 500px;
+      width: 100px;
+      height: 100px;
+      perspective: 300px;
 
     }
     .wrap{
@@ -22,7 +22,7 @@
       height: 100px;
       transform-style: preserve-3d;
       transform-origin: 50% 50% -50px;
-      transform: rotate3d(0,1,0,30deg);
+
     }
     .box{
       position: absolute;
@@ -59,6 +59,13 @@
     .box6{
       transform: translateZ(-100px)
 
+    }
+    @keyframes box_rotate {
+      form{transform: rotateY(0deg);}
+      to{transform: rotateY(360deg)}
+    }
+    .innerBox:hover .wrap{
+      animation: box_rotate 10s linear infinite
     }
   </style>
 </head>
