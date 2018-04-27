@@ -13,17 +13,18 @@
       margin: 100px auto;
       width: 100px;
       height: 100px;
-      perspective: 300px;
+      perspective: 300px;/*开启透视空间*/
 
     }
     .wrap{
       position: absolute;
       width: 100px;
       height: 100px;
-      transform-style: preserve-3d;
-      transform-origin: 50% 50% -50px;
+      transform-style: preserve-3d;/*开启3d空间*/
+      transform-origin: 50% 50% -50px;/*设置变幻基点*/
 
     }
+    /*正方体基本属性*/
     .box{
       position: absolute;
       top: 0;
@@ -35,35 +36,41 @@
       text-align: center;
       line-height: 50px;
     }
-    .box1{}
+    /*设置正方体上面*/
     .box2{
       top: -100px;
       transform-origin: bottom;
       transform: rotateX(90deg);
     }
+    /*设置正方体右面*/
     .box3{
       left: 100px;
       transform-origin: left;
       transform: rotateY(90deg);
     }
+    /*设置正方体右面*/
     .box4{
       top: 100px;
       transform-origin: top;
       transform: rotateX(-90deg);
     }
+    /*设置正方体下面*/
     .box5{
       left: -100px;
       transform-origin: right;
       transform: rotateY(-90deg);
     }
+    /*设置正方体左面*/
     .box6{
       transform: translateZ(-100px)
 
     }
+    /*设置动画关键帧*/
     @keyframes box_rotate {
       form{transform: rotateY(0deg);}
       to{transform: rotateY(360deg)}
     }
+    /*鼠标移入开始动画*/
     .innerBox:hover .wrap{
       animation: box_rotate 10s linear infinite
     }
