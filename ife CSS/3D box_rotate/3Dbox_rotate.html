@@ -41,28 +41,48 @@
       top: -100px;
       transform-origin: bottom;
       transform: rotateX(90deg);
+      -webkit-transform: rotateX(90deg);
+      -moz-transform: rotateX(90deg);
+      -ms-transform: rotateX(90deg);
+      -o-transform: rotateX(90deg);
     }
     /*设置正方体右面*/
     .box3{
       left: 100px;
       transform-origin: left;
       transform: rotateY(90deg);
+      -webkit-transform: rotateY(90deg);
+      -moz-transform: rotateY(90deg);
+      -ms-transform: rotateY(90deg);
+      -o-transform: rotateY(90deg);
     }
     /*设置正方体右面*/
     .box4{
       top: 100px;
       transform-origin: top;
       transform: rotateX(-90deg);
+      -webkit-transform: rotateX(-90deg);
+      -moz-transform: rotateX(-90deg);
+      -ms-transform: rotateX(-90deg);
+      -o-transform:rotateX(-90deg);
     }
     /*设置正方体下面*/
     .box5{
       left: -100px;
       transform-origin: right;
       transform: rotateY(-90deg);
+      -webkit-transform: rotateY(-90deg);
+      -moz-transform: rotateY(-90deg);
+      -ms-transform: rotateY(-90deg);
+      -o-transform:rotateY(-90deg);
     }
-    /*设置正方体左面*/
+    /*设置正方体后面*/
     .box6{
-      transform: translateZ(-100px)
+      transform: translateZ(-100px);
+      -webkit-transform: translateZ(-100px);
+      -moz-transform: translateZ(-100px);
+      -ms-transform: translateZ(-100px);
+      -o-transform: translateZ(-100px);
 
     }
     /*设置动画关键帧*/
@@ -70,9 +90,23 @@
       form{transform: rotateY(0deg);}
       to{transform: rotateY(360deg)}
     }
+    @-moz-keyframes box_rotate {
+      form{transform: rotateY(0deg);}
+      to{transform: rotateY(360deg)}
+    }
+    @-webkit-keyframes box_rotate {
+      form{transform: rotateY(0deg);}
+      to{transform: rotateY(360deg)}
+    }
+    @-o-keyframes box_rotate {
+      form{transform: rotateY(0deg);}
+      to{transform: rotateY(360deg)}
+    }
     /*鼠标移入开始动画*/
     .innerBox:hover .wrap{
-      animation: box_rotate 10s linear infinite
+      animation: box_rotate 10s linear infinite;
+      -webkit-animation: box_rotate 10s linear infinite;
+      -moz-animation: box_rotate 10s linear infinite;
     }
   </style>
 </head>
