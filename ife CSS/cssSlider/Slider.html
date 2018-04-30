@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slider</title>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  html,body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #wrap{
+    width: 500px;
+    height: 350px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .smail_img{
+    position: absolute;
+    width: 500px;
+    height: 60px;
+    bottom: 30px;
+    left: 0;
+    z-index: 10;
+  }
+  .smail_img a{
+    float: left;
+    margin-left: 8px;
+    display: inline-block;
+    /*width: 80px;*/
+    /*height: 56px;*/
+  }
+  .smail_img a img{
+    width: 90px;
+  }
+  #img1{
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    top: 0;
+    left: -500px;
+  }
+  #img2{
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    top: 0;
+    left: 0;
+  }
+  #img3{
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    top: 0;
+    left: 0;
+  }
+  #img4{
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    top: 0;
+    left: 0;
+  }
+  #img5{
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    top: 0;
+    left: 0;
+  }
+  .img1{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 500px;
+    height: 350px;
+  }
+  .img2{
+    position: absolute;
+    /*设置图片变换前样式*/
+    left: 0;
+    top:350px;
+    width: 500px;
+    height: 350px;
+  }
+  .img3{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 500px;
+    height: 350px;
+    /*设置图片变换前样式*/
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+  .img4{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 500px;
+    height: 350px;
+    display: none;
+    /*设置图片变换前样式*/
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+  }
+  .img5{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 500px;
+    height: 350px;
+    /*设置图片变换前样式*/
+    -webkit-transform: scale(0) rotate(-360deg);
+    -moz-transform: scale(0) rotate(-360deg);
+    -ms-transform: scale(0) rotate(-360deg);
+    -o-transform: scale(0) rotate(-360deg);
+    transform: scale(0) rotate(-360deg);
+  }
+  #img1:target .img1{
+    /*动画执行*/
+    -webkit-animation:img_slider1 0.5s ease-out;
+    -o-animation:img_slider1 0.5s ease-out;
+    animation: img_slider1 0.5s ease-out;
+    animation-fill-mode: both;/*动画执行后保持最后一帧*/
+  }
+  @keyframes img_slider1 {
+    /*动画样式*/
+    form{
+      -webkit-transform:  translateX(0);
+      -moz-transform:  translateX(0);
+      -ms-transform:  translateX(0);
+      -o-transform:  translateX(0);
+      transform:  translateX(0);}
+    to{
+      -webkit-transform: translateX(500px);
+      -moz-transform: translateX(500px);
+      -ms-transform: translateX(500px);
+      -o-transform: translateX(500px);
+      transform: translateX(500px);
+    }
+  }
+
+  #img2:target .img2{
+    /*动画执行*/
+    -webkit-animation: img_slider2 0.5s ease-out;
+    -o-animation: img_slider2 0.5s ease-out;
+    animation: img_slider2 0.5s ease-out;
+    animation-fill-mode:both;/*动画执行后保持最后一帧*/
+  }
+  @keyframes img_slider2 {
+    /*动画样式*/
+    form{top: 350px;}
+    to{top:0;}
+  }
+
+  #img3:target .img3{
+    /*动画执行*/
+    -webkit-animation: img_slider3 1s ease-in;
+    -o-animation: img_slider3 1s ease-in;
+    animation: img_slider3 1s ease-in;
+    animation-fill-mode:both;/*动画执行后保持最后一帧*/
+  }
+  @keyframes img_slider3 {
+    /*动画样式*/
+    form{
+      -moz-transform: scale(0);
+      -ms-transform: scale(0);
+      -o-transform: scale(0);
+      transform: scale(0);}
+    to{
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+
+  #img4:target .img4{
+    /*动画执行*/
+    display: inline-block;
+    -webkit-animation: img_slider4 1s ease-out;
+    -o-animation: img_slider4 1s ease-out;
+    animation: img_slider4 1s ease-out;
+    animation-fill-mode:both;/*动画执行后保持最后一帧*/
+  }
+  @keyframes img_slider4 {
+    /*动画样式*/
+    form{
+      -webkit-transform: scale(2);
+      -moz-transform: scale(2);
+      -ms-transform: scale(2);
+      -o-transform: scale(2);
+      transform: scale(2);}
+    to{
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+
+  #img5:target .img5{
+    /*动画执行*/
+    -webkit-animation: img_slider5 0.7s ease-in-out;
+    -o-animation: img_slider5 0.7s ease-in-out;
+    animation: img_slider5 0.7s ease-in-out;
+    animation-fill-mode:both;/*动画执行后保持最后一帧*/
+  }
+  @keyframes img_slider5 {
+    /*动画样式*/
+    form{
+      -webkit-transform: scale(0) rotate(-360deg);
+      -moz-transform: scale(0) rotate(-360deg);
+      -ms-transform: scale(0) rotate(-360deg);
+      -o-transform: scale(0) rotate(-360deg);
+      transform: scale(0) rotate(-360deg);}
+    to{
+      -webkit-transform: scale(1) rotate(0);
+      -moz-transform: scale(1) rotate(0);
+      -ms-transform: scale(1) rotate(0);
+      -o-transform: scale(1) rotate(0);
+      transform: scale(1) rotate(0);
+    }
+  }
+</style>
+<body>
+<div id="wrap">
+  <div class="smail_img">
+    <a href="#img1"><img src="img/1.jpg"></a>
+    <a href="#img2"><img src="img/2.jpg"></a>
+    <a href="#img3"><img src="img/3.jpg"></a>
+    <a href="#img4"><img src="img/4.jpg"></a>
+    <a href="#img5"><img src="img/5.jpg"></a>
+  </div>
+  <!--<img src="img/1.jpg">-->
+  <div id="img1">
+    <img src="img/1.jpg" class="img1">
+  </div>
+  <div id="img2">
+    <img src="img/2.jpg" class="img2">
+  </div>
+  <div id="img3">
+    <img src="img/3.jpg" class="img3">
+  </div>
+  <div id="img4">
+    <img src="img/4.jpg"  class="img4">
+  </div>
+  <div id="img5">
+    <img src="img/5.jpg" class="img5">
+  </div>
+</div>
+</body>
+</html>
