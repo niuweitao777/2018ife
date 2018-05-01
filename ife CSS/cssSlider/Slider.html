@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <title>Slider</title>
@@ -13,7 +13,9 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    text-align: center;
   }
+
   #wrap{
     width: 500px;
     height: 350px;
@@ -129,6 +131,7 @@
     -o-transform: scale(0) rotate(-360deg);
     transform: scale(0) rotate(-360deg);
   }
+  /*:target 选择器可用于选取当前活动的目标元素*/
   #img1:target .img1{
     /*动画执行*/
     -webkit-animation:img_slider1 0.5s ease-out;
@@ -247,7 +250,7 @@
     <a href="#img4"><img src="img/4.jpg"></a>
     <a href="#img5"><img src="img/5.jpg"></a>
   </div>
-  
+
   <div id="img1">
     <img src="img/1.jpg" class="img1">
   </div>
@@ -264,5 +267,7 @@
     <img src="img/5.jpg" class="img5">
   </div>
 </div>
+<h3>这是一个失败的作业，本想用伪类：traget触发动画的。</br>可是纯CSS解决不了没有上一张背景，切换时是空白。
+  纯CSS能解决这个问题吗？</h3>
 </body>
 </html>
