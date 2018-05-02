@@ -1,0 +1,21 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+h1{
+  margin-bottom: 20px;
+}
+
+.wrap h2{
+  margin: 20px 0;
+}
+.wrap h4{
+  display: inline-block;
+  margin-right: 10px;
+}
+.wrap span,.wrap a{
+  margin-right: 20px;
+}
+.power p,.school p,.work p{
+  margin-bottom: 20px;
+}

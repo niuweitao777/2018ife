@@ -1,0 +1,68 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.wrap h1{
+  background-color: #858585;
+  padding: 10px;
+  text-align: left;
+  color: white;
+  font-size: 20px;
+}
+article>div{
+  font-size: 13px;
+  border-bottom: 1px solid #cacaca;
+  position: relative;
+}
+article div h2{
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 80px;
+  width: 80px;
+  height: 80px;
+  background-color: #d6d6d6;
+  vertical-align: top;
+}
+.msg>div{
+  position: absolute;
+  top: 0;
+  left: 80px;
+
+}
+.msg span{
+  float: left;
+  margin: 0 30px 0 15px;
+}
+.msg h4{
+  float: left;
+  margin-left: 15px;
+}
+.conotact>div{
+  position: absolute;
+  top: 0;
+  left: 80px;
+}
+.conotact h4,.conotact a, .conotact span{
+  float: left;
+  margin-left: 15px;
+}
+.conotact a, .conotact span{
+  margin-right: 15px;
+}
+.power>div,.school>div,.work>div{
+  position: absolute;
+  top: 0;
+  left: 80px;
+  padding-left: 15px;
+}
+.power h4,.power p{
+  float: left;
+}
+.school h4,.school p{
+  float: left;
+}
+.work h4, .work p{
+  float: left;
+}
