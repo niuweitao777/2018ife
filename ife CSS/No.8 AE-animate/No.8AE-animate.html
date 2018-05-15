@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>No.8 AE animate</title>
+
+  <style>
+    /*#animation{*/
+      /*width: 1000px;*/
+      /*margin: 50px auto;*/
+
+    /*}*/
+    #wrap{
+      float: left;
+    }
+    .box{
+      background-color: #2196f3;
+      width: 100px;
+      height: 200px;
+      float: left;
+    }
+  </style>
+</head>
+<body>
+<div id="animation"></div>
+<div id="wrap">
+  <div id="box1" class="box"></div>
+  <div id="box2" class="box"></div>
+  <div id="box3" class="box"></div>
+  <div id="box4" class="box"></div>
+</div>
+<script src="lottie.js"></script>
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById('animation'),
+    renderer: 'canvas', //渲染方式，有"html"、"canvas"和"svg"三种
+    loop: true,
+    autoplay: true,
+    path: 'data.json' //json文件路径
+  });
+</script>
+
+</body>
+</html>
