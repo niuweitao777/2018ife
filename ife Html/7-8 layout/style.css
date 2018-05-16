@@ -1,0 +1,114 @@
+ul li{
+  list-style: none;
+}
+#web{
+  width: 100%;
+  height: 50px;
+  background-color: lightblue;
+}
+header{
+  background-color: black;
+  width: 100%;
+  height: 80px;
+}
+.headWrap{
+  width: 960px;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+}
+.logo{
+  height: 50px;
+  font-size: 30px;
+  line-height: 80px;
+  color: #fff;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.headWrap nav {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+.Hlist{
+  overflow: hidden;
+}
+.Hlist li{
+  float: left;
+  margin-left: 10px;
+}
+.Hlist li a{
+  color: #ffffff;
+}
+.banner{
+  width: 100%;
+  height: 300px;
+  background-color: yellowgreen;
+  position: relative;
+}
+.Blist{
+  position: absolute;
+  bottom: 30px;
+  right: 100px;
+}
+.Blist li{
+  float: left;
+  line-height: 30px;
+  height: 30px;
+  width: 25px;
+  background-color: #fff;
+  opacity: 0.6;
+  margin-left: 15px;
+  text-align: center;
+}
+.navWrap{
+  width: 960px;
+  margin: 0 auto;
+  height: 60px;
+
+  box-sizing: content-box;
+}
+.Nlist li{
+  padding: 15px;
+
+  line-height: 29px;
+  box-sizing: border-box;
+  float: left;
+  border-radius: 20px 20px 0 0;
+  background-color: lightgray;
+  border: 1px solid gray;
+
+}
+.oneNav{
+  margin-top: 20px;
+  border-bottom: 1px solid gray;
+}
+.Nlist li a {
+  color: #343434;
+}
+.content{
+  margin: 10px auto;
+  width: 960px;
+  /*height: 500px;*/
+  border: 1px solid gray;
+
+}
+.Nlist .active{
+  background-color: white;
+  border-bottom: 1px solid white;
+}
+.content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.content div{
+  padding: 80px;
+  text-align: center;
+  line-height: 60px;
+  /*flex: 1 100px;*/
+  border: 1px solid lightgray;
+
+}

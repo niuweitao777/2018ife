@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .demo{
+      width: 100%;
+      height: 500px;
+      background-color: lightblue;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .box{
+      width: 100%;
+      height: 100%;
+    }
+    .box1 .left{
+      float: left;
+      width: 30%;
+      height: 100%;
+      background-color: lightcoral;
+    }
+    .box1 .right{
+      float: left;
+      width: 70%;
+      height: 100%;
+      background-color: lightskyblue;
+
+    }
+    .box2 .left{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: lightcoral;
+    }
+    .box2 .right{
+      position: absolute;
+      top: 0;
+      left: 200px;
+      width: calc(100% - 200px);
+      height: 100%;
+      background-color: lightskyblue;
+
+    }
+    .box3{
+      display: flex;
+    }
+    .box3 .left{
+      background-color: lightcoral;
+      width: 100%;
+      height: 100%;
+    }
+    .box3 .right{
+      width: 200px;
+      height: 100%;
+      background-color: lightskyblue;
+    }
+
+    .box4 .wrap{
+      float: left;
+      height: 100%;
+      width: 100%;
+
+    }
+    .box4 .main{
+      margin: 0 200px;
+      height: 100%;
+
+      background-color: lightgoldenrodyellow;
+    }
+    .box4 .right{
+      background-color: lightskyblue;
+      width: 200px;
+      float: left;
+      height: 100%;
+      margin-left: -200px;
+    }
+    .box4 .left{
+      background-color: lightcoral;
+      width: 200px;
+      float: left;
+      height: 100%;
+      margin-left: -100%;
+    }
+
+    .box5 .left{
+      background-color: lightcoral;
+      height: 100%;
+      float: left;
+      width: 200px;
+    }
+    .box5 .main{
+      background-color: lightgoldenrodyellow;
+      height: 100%;
+      float: left;
+      width: 800px;
+    }
+    .box5 .right{
+      background-color: lightskyblue;
+      height: 100%;
+      float: left;
+      width: calc(100% - 1000px);
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h3>两栏布局，左侧占30%宽度，右侧占70%宽度</h3>
+<p>Float、Position或者Flexbox</p>
+<div class="demo">
+  <div class="box1 box">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</div>
+<h3>两栏布局，左侧固定宽度，右侧根据浏览器宽度进行自适应变化</h3>
+<div class="demo">
+  <div class="box2 box">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</div>
+<h3>两栏布局，右侧固定宽度，左侧根据浏览器宽度进行自适应变化</h3>
+<div class="demo">
+  <div class="box3 box">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</div>
+<h3>三栏布局，左侧固定宽度，右侧固定宽度，中间部分宽度随浏览器宽度变化而自适应变化</h3>
+<div class="demo">
+  <div class="box4 box">
+    <div class="wrap">
+      <div class="main"></div>
+    </div>
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</div>
+<h3>三栏布局，左侧固定宽度，中间固定宽度，右侧根据浏览器宽度变化而自适应变化</h3>
+<div class="demo">
+  <div class="box5 box">
+    <div class="left"></div>
+    <div class="main"></div>
+    <div class="right"></div>
+  </div>
+</div>
+<!--
+设计稿分为头部，中间的Banner，主导航，内容区域，底部
+头部区域为100%宽的一个深色背景，头部中间有一块960px的定宽居中区域，里面包括了左边的Logo和右上角导航
+Banner为100%宽的区块，中间右下方有banner轮显的当前图片数字的示例，其中正在显示的图片对应的数字有特殊样式（注意不需要实现轮显banner的业务逻辑，只是按照设计稿做静态样式）
+主导航区域，有一个100%宽的灰色线条，线条之上，在中间960px区域是导航菜单，当前正在浏览页对应的菜单有特殊样式
+主要内容区域，宽度为960px，里面每个内容都有至少80px的padding，每一个内容的宽度均为自适应，可以使用flex布局
+-->
+<h2>页面</h2>
+<div id="web">
+  <header>
+    <div class="headWrap">
+      <div class="logo">logo</div>
+      <nav>
+        <ul class="Hlist">
+          <li><a href="###">Github</a></li>
+          <li><a href="###">Register</a></li>
+          <li><a href="###">login</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </header>
+  <section class="banner">
+    <ul class="Blist">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </section>
+  <nav class="oneNav">
+    <div class="navWrap">
+      <ul class="Nlist">
+        <li class="active"><a href="###">HOME</a></li>
+        <li><a href="###">PROFILE</a></li>
+        <li><a href="###">ABOUT</a></li>
+      </ul>
+    </div>
+  </nav>
+  <section class="content">
+    <div>This is content1</div>
+    <div>MaybeContent2</div>
+    <div>content3</div>
+    <div>content4</div>
+    <div>content5</div>
+    <div>content6</div>
+    <div>content7</div>
+    <div>content8</div>
+    <div>content9</div>
+    <div>content10</div>
+  </section>
+  <footer></footer>
+</div>
+</body>
+</html>
