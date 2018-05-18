@@ -15,7 +15,7 @@ a{
   clear: both;
 }
 header{
-  background-image: url("img/1 (1).png");
+  background-image: url("./img/1 (1).png");
   background-repeat: no-repeat;
   width: 100%;
 
@@ -121,7 +121,7 @@ header form input[type="button"]{
   color: #7e7e7e;
 }
 .car{
-  background-image: url("img/1 (6).png");
+  background-image: url("./img/1 (6).png");
   background-repeat: no-repeat;
   width: 100%;
   overflow: hidden;
