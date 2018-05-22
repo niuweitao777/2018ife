@@ -86,7 +86,9 @@ article div h2{
   left: 50%;
   margin: -100px 0 0 -100px;
   display: none;
-
+  line-height: 40px;
+  padding-top: 30px;
+  box-sizing: border-box;
 }
 #cloe{
   position: absolute;
@@ -96,4 +98,5 @@ article div h2{
   color: white;
   border: none;
   width: 17px;
+
 }
