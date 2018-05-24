@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<input id="first-number" type="number" value="0" placeholder="第一个数字">
+<input id="second-number" type="number" value="0" placeholder="第二个数字">
+<button id="add-btn">加</button>
+<button id="minus-btn">减</button>
+<button id="times-btn">乘</button>
+<button id="divide-btn">除</button>
+<p id="result1">运算结果</p>
+
+<input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+<input id="bin-bit" type="number" placeholder="输入转化后二进制数字位数">
+<button id="trans-btn">转化为二进制</button>
+<p id="result2">运算结果</p>
+
+<table id="nine">
+
+</table>
+<h2 id="times"></h2>
+<script type="text/javascript">
+  window.onload = function () {
+    let number = new Result('first-number', 'second-number', 'button', 'result1')
+    let dec2bin = new Dec2bin("dec-number", "bin-bit", "trans-btn", "result2")
+  }
+  function Result(first, second, button, result1) {
+    this.first = document.getElementById(first)
+    this.second = document.getElementById(second)
+    this.btns = document.getElementsByTagName(button)
+    this.result1 = document.getElementById(result1)
+    this.len = this.btns.length
+    this.computAttri = ''
+    for (let i = 0; i < this.len; i++) {
+      let that = this
+      this.btns[i].onclick = function () {
+        that.computAttri = this.getAttribute('id')
+        that.verify()
+      }
+
+    }
+  }
+    Result.prototype = {
+      constructor: Result,
+      verify(){
+        if (this.computAttri == "divide-btn" && parseFloat(this.second.value) == 0){
+          console.log('除数不能为0')
+          return false
+        }else {
+          this.comput ()
+        }
+      },
+      comput (){
+        switch (this.computAttri){
+          case 'add-btn':
+            this.result1.innerHTML = `运算结果 = ${parseFloat(this.first.value) + parseFloat(this.second.value)}`
+            break
+          case 'minus-btn':
+            this.result1.innerHTML = `运算结果 = ${parseFloat(this.first.value) - parseFloat(this.second.value)}`
+            break
+          case 'times-btn':
+            this.result1.innerHTML = `运算结果 = ${parseFloat(this.first.value) * parseFloat(this.second.value)}`
+            break
+          case 'divide-btn':
+            this.result1.innerHTML = `运算结果 = ${parseFloat(this.first.value) / parseFloat(this.second.value)}`
+            break
+        }
+      }
+  }
+
+
+  function Dec2bin(decNumber, binBit, btn, result2) {
+    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数l
+    this.c = document.getElementById(decNumber)
+    this.d = document.getElementById(binBit)
+    this.btn = document.getElementById(btn)
+    this.result2 = document.getElementById(result2)
+    this.b = ''
+    this.times = []
+    this.btn.onclick = ()=> {
+      this.b = parseFloat(this.c.value)
+      this.changeNum()
+
+    }
+  }
+  Dec2bin.prototype = {
+    changeNum() {
+      this.times = []
+      if(this.b > 0 && parseInt(this.b) == this.b){
+        while (this.b > 0)
+        {
+          this.a = this.b % 2
+          this.b = Math.floor(this.b /2)
+          this.times.unshift(this.a)
+        }
+      }else {
+        console.log('请输入大于0或整数')
+        return false
+      }
+
+      if(this.times.length < parseInt(this.d.value)){
+        let len = parseInt(this.d.value - this.times.length)
+        for (let i = 0; i < len; i++) {
+          this.times.unshift(0)
+        }
+      }else if (this.times.length > parseInt(this.d.value)){
+        this.result2.innerHTML = this.times.join('')
+        console.log('出错')
+        return false
+      }
+      this.result2.innerHTML = this.times.join('')
+    }
+  }
+
+  // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+  // Some coding
+  let num = ''
+  let PA = 'PA'
+
+  let flag = true
+  for (let i = 1; i <= 100; i++) {
+    if( i % 3 == 0){
+      changePa()
+      continue
+    }else {
+      let a = i + ''
+      if(a.indexOf(3) == -1){
+        Pa(i)
+      }else {
+        changePa()
+      }
+    }
+  }
+
+  function Pa(i) {
+    num += i + ','
+  }
+  function changePa() {
+    num += PA + ','
+  }
+console.log(num)
+
+
+
+  let nine = document.getElementById('nine')
+  for (let i = 1; i <= 9; i++) {
+    let row = document.createElement('tr')
+    for (let j = 1; j <= i; j++) {
+      let ron = document.createElement('td')
+      ron.innerHTML = `${j} * ${i} =  ${i * j}`
+      row.appendChild(ron)
+    }
+    nine.appendChild(row)
+  }
+  let times = document.getElementById('times')
+  var date = new Date()
+  var H = date.getHours()
+  if(H > 7 && H < 12 ){
+    times.innerHTML = '上午好'
+  }else if(H > 12 && H < 18){
+    times.innerHTML = '下午好'
+  }else if(H > 18){
+    times.innerHTML = '晚上好'
+  }
+
+</script>
+</body>
+</html>
