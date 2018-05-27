@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .palette {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .palette li {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      cursor: pointer;
+    }
+    #pic{
+      width: 480px;
+      height: 480px;
+      background-image: url("./erik_ce204002.jpg");
+      background-repeat: no-repeat;
+      background-position: 0 0;
+    }
+  </style>
+</head>
+<body>
+<input id="name" type="text">
+<button id="submit-btn">Submit</button>
+
+  <label >
+    <input type="radio" id="school" name="status">school
+  </label >
+  <label >
+    <input type="radio" id="company" name="status">company
+  </label>
+  <select id="school_select">
+    <option>北京大学</option>
+    <option>黑龙江大学</option>
+    <option>华中科技大学</option>
+  </select>
+  <select id="company_select">
+    <option >百度</option>
+    <option >爱奇艺</option>
+  </select>
+
+
+<ul class="palette">
+  <li style="background-color:crimson"></li>
+  <li style="background-color:bisque"></li>
+  <li style="background-color:blueviolet"></li>
+  <li style="background-color:coral"></li>
+  <li style="background-color:chartreuse"></li>
+  <li style="background-color:darkolivegreen"></li>
+  <li style="background-color:cyan"></li>
+  <li style="background-color:#194738"></li>
+</ul>
+
+<p class="color-picker"></p>
+
+<div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+<button id="fade-btn">淡出</button>
+<div id="pic"></div>
+<script type="text/javascript">
+  window.onload = function () {
+    var choose = new Choose('input')
+  }
+  let name = document.getElementById('name')
+  let btn = document.getElementById('submit-btn')
+  let val
+  btn.onclick = function () {
+   val = name.value
+    console.log(val)
+
+  }
+  document.onkeydown = function (event) {
+    let e = event ||window.event
+    console.log(e.keyCode)
+    if(e.keyCode == 13){
+      val = name.value
+      console.log(val)
+    }else if(e.keyCode == 27){
+      name.value = ''
+    }
+  }
+
+function Choose(elm) {
+   let that = this
+  this.selecteds = document.getElementsByTagName('select')
+  this.inputs = document.getElementsByTagName(elm)
+  for (var i = 0; i < this.inputs.length; i++) {
+    this.inputs[i].onchange = function () {
+      that.changeSelect(this.getAttribute('id'))
+    }
+
+  }
+}
+Choose.prototype = {
+  changeSelect(id){
+    if(id == "school"){
+      this.selecteds[0].size = this.selecteds[0].length
+      this.selecteds[1].size = 0
+
+    }else {
+      this.selecteds[1].size = this.selecteds[1].length
+      this.selecteds[0].size = 0
+    }
+  }
+}
+  
+  var list = document.querySelectorAll("li");
+  var ul = document.querySelector('.palette')
+  ul.addEventListener('click', function (e) {
+    var e = e ||window.event
+    var t = e.target
+    var c = t.style.backgroundColor
+    var p = document.querySelector('.color-picker')
+    var fontColor = p.style.color
+    console.log(fontColor)
+    console.log(t)
+    p.style.backgroundColor = c
+    t.style.backgroundColor = fontColor
+  })
+
+
+  var fade_obj = document.getElementById('fade-obj')
+  var fade_btn= document.getElementById('fade-btn')
+  var num = 1
+  var flag = true
+  var Inter = null
+  fade_btn.addEventListener('click',function () {
+    t()
+    fade_btn.disabled = true
+   var setTime = setTimeout(function () {
+      clearInterval(Inter)
+      flag = !flag
+      fade_btn.disabled = false
+      if(flag){
+        fade_btn.innerHTML = '淡出'
+      }else{
+        fade_btn.innerHTML = '淡入'
+      }
+    }, 1000)
+  })
+  function t() {
+    Inter = setInterval(function () {
+      flag ? num -= 0.1 : num += 0.1
+      fade_obj.style.opacity = num
+    }, 100)
+
+  }
+
+  var pic = document.getElementById('pic')
+  var picNum = 0
+  var isTrue = true
+  setInterval(picMove, 100)
+
+  function picMove() {
+    if(isTrue){
+      picNum -= 480
+    }else{
+      picNum += 480
+    }
+    if(picNum <= -7680){
+      isTrue = !isTrue
+    } else if(picNum >= 0){
+      isTrue = !isTrue
+    }
+    pic.style.backgroundPosition = '0 ' + picNum + 'px'
+
+  }
+</script>
+</body>
+</html>
