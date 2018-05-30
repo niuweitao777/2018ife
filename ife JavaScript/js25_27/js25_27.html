@@ -208,6 +208,7 @@
       })
     }
   }
+  setInterval(getSelectAll, 500)
     function getSelectAll() {
       let yearValue = year.options[year.selectedIndex].value
       let monthValue = month.options[month.selectedIndex].text
@@ -222,36 +223,24 @@
       let Time = new Date()
       let nowTime = Time.getTime() //现在到1970年ms
       let chooseTime = Date.parse(optionDay)
-      let Day = getIntervalDay(nowTime, chooseTime)
-      let Hour = getIntervalHour(nowTime, chooseTime)
-      let mini = getIntervalMini(nowTime, chooseTime)
-      let second = getIntervalsecond(nowTime, chooseTime)
+      getIntervalDay(nowTime, chooseTime)
 
-      if(nowTime > chooseTime){
-        result.innerHTML = `现在距离 "所选时间" 已经过去 ${Day} 天 ${Hour} 小时 ${mini} 分 ${second} 秒`
-      }else{
-        result.innerHTML = `现在距离 "所选时间" 还有 ${-Day} 天 ${-Hour} 小时 ${-mini} 分 ${-second} 秒`
-      }
     }
     function  getIntervalDay(nowTime, chooseTime) {
       let ms = nowTime - chooseTime
-      let day = Math.floor(ms / 1000 / 60 / 60 / 24)
-      return day
-    }
-    function  getIntervalHour(nowTime, chooseTime) {
-      let ms = nowTime - chooseTime
-      let Hour = Math.floor(ms / 1000 / 60 / 60)
-      return Hour
-    }
-    function  getIntervalMini(nowTime, chooseTime) {
-      let ms = nowTime - chooseTime
-      let Mini = Math.floor(ms / 1000 / 60)
-      return Mini
-    }
-    function  getIntervalsecond(nowTime, chooseTime) {
-      let ms = nowTime - chooseTime
-      let second = Math.floor(ms / 1000)
-      return second
+      let Day = Math.floor(ms / 1000 / 60 / 60 / 24)
+      let hour = (ms / 1000 / 60 / 60 / 24) - Math.floor(ms / 1000 / 60 / 60 / 24)
+      let Hour = hour * 24
+      let mini =  Hour  - Math.floor(Hour)
+      let Mini = mini * 60
+      let second =  Mini  - Math.floor(Mini)
+      let Second = second * 60
+
+      if(nowTime > chooseTime){
+        result.innerHTML = `现在距离 "所选时间" 已经过去 ${Day} 天 ${Math.floor(Hour)} 小时 ${Math.floor(Mini)} 分 ${Math.floor(Second)} 秒`
+      }else{
+        result.innerHTML = `现在距离 "所选时间" 还有 ${-Day} 天 ${-Math.floor(Hour)} 小时 ${-Math.floor(Mini)} 分 ${-Math.floor(Second)} 秒`
+      }
     }
 
 </script>
