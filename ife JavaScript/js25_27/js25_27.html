@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="now_time"></div>
+<div id="text"></div>
+
+<select id="year-select"></select>
+<select id="month-select"></select>
+<select id="day-select"></select>
+<select id="hour-select"></select>
+<select id="minite-select"></select>
+<select id="second-select"></select>
+
+<p id="result-wrapper">现在距离所择时间 还有 X 天 X 小时 X 分 X 秒</p>
+<script type="text/javascript">
+  function Go() {
+    console.log("Go");
+
+  }
+  function GoSteps(n) {
+    if(n === undefined){
+      n = 1
+    }
+    if(n === null || n < 0 || isNaN(n)){
+      return false
+    }
+    n = Math.floor(n)
+    while (n > 0)
+    {
+    Go()
+      n--
+    }
+  }
+  GoSteps(10); // Go 10次
+  GoSteps(1); // Go 1次
+  GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+  GoSteps(0);  // 0次
+  GoSteps(-1);  // 0次
+  GoSteps(1.4);  // Go 1次
+  GoSteps(1.6);  // Go 1次
+  GoSteps(-1);  // 0次
+  GoSteps(true);  // Go 1次
+  GoSteps(false);  // 0次
+  GoSteps("Test");  // 0次
+  GoSteps(NaN);  // 0次*!
+  GoSteps(null);  // 0次
+
+
+  //----------------------------------------------------------------------------------------------
+
+  let now = document.getElementById('now_time')
+  let text = document.getElementById('text')
+ // 在页面中显示当前日期及时间，按秒更新
+  setInterval(nowtime, 500)
+  function nowtime() {
+    let time = new Date()
+    let year = time.getFullYear()
+    let H = time.getHours()
+    let M = time.getMonth() + 1
+    let Dates = time.getDate()
+    let dayArr = ["日", "一", "二", "三", "四", "五", "六" ]
+    let Day = dayArr[time.getDay()]
+    let Minuter = time.getMinutes()
+    let Second = time.getSeconds()
+    now.innerHTML = `${setZero(year)} 年 ${setZero(M)} 月 ${setZero(Dates)} 日 星期 ${Day} ${setZero(H)}:${setZero(Minuter)}:${setZero(Second)}`
+  }
+  function setZero(num) {
+    if(num >= 0 && num <= 9){
+      num = '0' + num
+    }
+    return num
+  }
+
+
+  setInterval(textTime, 500)
+  function textTime() {
+    let time = new Date()
+    let year = time.getFullYear()
+    let M = time.getMonth() + 1
+    let Dates = time.getDate()
+    let dayArr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
+    let Day = dayArr[time.getDay()]
+    let H = time.getHours()
+    let Minuter = time.getMinutes()
+    let Second = time.getSeconds()
+    if(H >= 0 && H <= 12){
+      text.innerHTML = `${setZero(year)} - ${setZero(M)} - ${setZero(Dates)}  ${Day} ${setZero(H)}:${setZero(Minuter)}:${setZero(Second) } AM`
+    }else{
+      H = H - 12
+      text.innerHTML = `${setZero(year)} - ${setZero(M)} - ${setZero(Dates)}  ${Day} ${setZero(H)}:${setZero(Minuter)}:${setZero(Second)} PM`
+
+    }
+  }
+
+
+  function sevenDay(date) {
+    let day = new Date(date).getDay()
+    let dayArr = ["日", "一", "二", "三", "四", "五", "六" ]
+    let Day = dayArr[day]
+    return Day
+  }
+  console.log(sevenDay('2018-5-29'))
+//----------------------------------------------------------------------------------------------
+
+  let year = document.getElementById('year-select')
+  let month = document.getElementById('month-select')
+  let day = document.getElementById('day-select')
+  let hour = document.getElementById('hour-select')
+  let minite = document.getElementById('minite-select')
+  let second = document.getElementById('second-select')
+  let result = document.getElementById('result-wrapper')
+  let year1 = ['31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31']
+  let year2 = ['31', '29', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31']
+  let flag = year2
+  //当所选时间早于现在时间时，文案为 现在距离 "所选时间" 已经过去 xxxx
+  //当所选时间晚于现在时间时，文案为 现在距离 "所选时间" 还有 xxxx
+  //注意当前时间经过所选时间时候的文案变化
+  //注意选择不同月份的时候，日期的可选范围不一样，比如1月可以选31天，11月只有30天，注意闰年
+ // 同样，需要注意，通过优雅的函数封装，使得代码更加可读且可维护
+  window.onload = function () {
+    isNow()
+    getSelectAll()
+  }
+  function chooseYear() {
+    for (let i = 2000; i < 2030; i++) {
+
+      let opt = document.createElement('option')
+      opt.value = i
+      opt.innerHTML = i
+      year.appendChild(opt)
+    }
+  }
+  year.addEventListener('change', function () {
+    let yearIndex = parseFloat(year.selectedIndex)
+
+    if(leapYear(yearIndex)){
+      flag = year2
+    }else{
+      flag = year1
+    }
+    
+    chooseMonth()
+    chooseDay()
+  })
+
+  function chooseMonth() {
+    month.options.length = 0
+    for (let i = 0; i < 12; i++) {
+
+      let opt = document.createElement('option')
+      opt.value = flag[i]
+      opt.innerHTML = i + 1
+      month.appendChild(opt)
+    }
+    console.log(flag)
+  }
+  month.addEventListener('change', function () {
+    chooseDay()
+  })
+  function chooseDay() {
+    day.options.length = 0
+    let dayNum = month.options[month.selectedIndex].value
+    console.log(dayNum)
+    dayNum = parseFloat(dayNum)
+
+    for (let i = 1; i <= dayNum; i++) {
+      let opt = document.createElement('option')
+      opt.value = i
+      opt.innerHTML = i
+      day.appendChild(opt)
+    }
+  }
+ function chooseHour() {
+   for (let i = 0; i < 24; i++) {
+
+     let opt = document.createElement('option')
+     opt.value = i
+     opt.innerHTML = i
+     hour.appendChild(opt)
+   }
+ }
+ function chooseMini() {
+   for (let i = 0; i < 60; i++) {
+
+     let opt = document.createElement('option')
+     opt.value = i
+     opt.innerHTML = i
+     let newOpt = opt.cloneNode(true)
+     minite.appendChild(opt)
+     second.appendChild(newOpt)
+   }
+ }
+ chooseYear()
+ chooseMonth()
+  chooseDay()
+  chooseHour()
+ chooseMini()
+
+  function leapYear(num) {
+    return !(num % (num % 100 ? 4 : 400))
+  }
+  function isNow() {
+    let selects = document.querySelectorAll('select')
+    let len = selects.length
+    for (let i = 0; i < len; i++) {
+       /*selects[i].onchange = function () {
+         getSelectAll() //所有select事件
+       }*/
+      selects[i].addEventListener('change', function () {
+        getSelectAll() //所有select事件
+      })
+
+    }
+
+
+  }
+    function getSelectAll() {
+      let yearValue = year.options[year.selectedIndex].value
+      let monthValue = month.options[month.selectedIndex].text
+      let dayValue = day.options[day.selectedIndex].value
+      let hourValue = hour.options[hour.selectedIndex].value
+      let miniteValue = minite.options[minite.selectedIndex].value
+      let secondValue = second.options[second.selectedIndex].value
+      let optionDay = `${yearValue}/${monthValue}/${dayValue}/ ${hourValue}:${miniteValue}:${secondValue}`
+      resultTime(optionDay)
+    }
+    function resultTime(optionDay) {
+      let Time = new Date()
+      let nowTime = Time.getTime() //现在到1970年ms
+      let chooseTime = Date.parse(optionDay)
+      let Day = getIntervalDay(nowTime, chooseTime)
+      let Hour = getIntervalHour(nowTime, chooseTime)
+      let mini = getIntervalMini(nowTime, chooseTime)
+      let second = getIntervalsecond(nowTime, chooseTime)
+
+      if(nowTime > chooseTime){
+        result.innerHTML = `现在距离 "所选时间" 已经过去 ${Day} 天 ${Hour} 小时 ${mini} 分 ${second} 秒`
+      }else{
+        result.innerHTML = `现在距离 "所选时间" 还有 ${-Day} 天 ${-Hour} 小时 ${-mini} 分 ${-second} 秒`
+      }
+    }
+    function  getIntervalDay(nowTime, chooseTime) {
+      let ms = nowTime - chooseTime
+      let day = Math.floor(ms / 1000 / 60 / 60 / 24)
+      return day
+    }
+    function  getIntervalHour(nowTime, chooseTime) {
+      let ms = nowTime - chooseTime
+      let Hour = Math.floor(ms / 1000 / 60 / 60)
+      return Hour
+    }
+    function  getIntervalMini(nowTime, chooseTime) {
+      let ms = nowTime - chooseTime
+      let Mini = Math.floor(ms / 1000 / 60)
+      return Mini
+    }
+    function  getIntervalsecond(nowTime, chooseTime) {
+      let ms = nowTime - chooseTime
+      let second = Math.floor(ms / 1000)
+      return second
+    }
+
+</script>
+
+</body>
+</html>
