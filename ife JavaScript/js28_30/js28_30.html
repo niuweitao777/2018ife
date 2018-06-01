@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .wrapper{
+      margin: 50px auto;
+      width: 300px;
+
+    }
+    input{
+      width: 200px;
+      height: 25px;
+      float: right;
+      padding-left: 10px;
+    }
+    .email-sug{
+      list-style: none;
+      width: 200px;
+      float: right;
+      border: 1px solid #99a1ab;
+      border-top: none;
+      display: none;
+    }
+    .email-sug li{
+      padding-left: 10px;
+      font-size: 14px;
+      height: 25px;
+      line-height: 25px;
+      color: #99a1ab;
+    }
+    .email-sug li:hover{
+      background-color: #bddfed;
+    }
+    .first{
+      background-color: #ffc5cf;
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  请输入邮箱：<input id="email-input" type="text">
+  <ul id="email-sug-wrapper" class="email-sug">
+
+  </ul>
+</div>
+<script type="text/javascript">
+  // 邮箱后缀List参考
+  let postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net']
+  let email_input = document.getElementById('email-input')
+  let emailWrap = document.getElementById('email-sug-wrapper')
+  // 第二种基于数据的代码结构
+  let nowSelectTipIndex = 0;
+  email_input.focus()//默认焦点
+  email_input.oninput = function (e) { //输入监听
+    //不是上下及回车
+    e = event || window.event
+    if(e.keyCode != 38 || e.keyCode != 40 || e.keyCode != 13){
+
+      nowSelectTipIndex = 0 //重置选中状态
+      getValue(this)
+    }
+
+
+    /*getValue(this)*/
+  }
+  //----------------------------------------------------------------------------
+  function getValue(elm) { //获取用户输入
+    let inputVal = elm.value
+    HtmlUtil.htmlEncode(inputVal)
+    createLi(inputVal.trim())
+  }
+  //----------------------------------------------------------------------------
+  function createLi(val) { //生成提示框中的提示内容
+    emailWrap.innerHTML = ''
+    let arr =[]
+    if(val.indexOf('@') != -1){
+      let isAt = val.indexOf('@')
+      let atAfter =val.slice(isAt + 1)
+      if(atAfter){
+        for (var i = 0; i <  postfixList.length; i++) {
+          if(postfixList[i].indexOf(atAfter) != -1){
+            arr.push(postfixList[i])
+          }
+        }
+      }
+      val = val.slice(0, isAt)
+      HtmlUtil.htmlDecode(val)
+    }
+    if(arr[0]){
+      for (let i = 0; i < arr.length; i++) {
+        let li = document.createElement('li')
+        li.index = i // 第二种自定义index属性
+        li.innerHTML = `${val}@${arr[i]}`
+        addLi(li)
+      }
+
+      //第一种方案 li重置选中状态
+      /*resetli()*/
+
+
+      //第二种基于数据的代码结构
+      resetLibg() // 将第nowSelectTipIndex个Li的样式设置为被选样式
+    }else{
+      for (let i = 0; i < postfixList.length; i++) {
+
+        let li = document.createElement('li')
+        li.index = i// 第二种自定义index属性
+        li.innerHTML = `${val}@${postfixList[i]}`
+        addLi(li)
+
+      }
+      //第一种方案 li重置选中状态
+      /*resetli()*/
+
+
+      //第二种基于数据的代码结构
+      resetLibg()  //将第nowSelectTipIndex个Li的样式设置为被选样式
+    }
+  }
+  //----------------------------------------------------------------------------
+  function addLi(li) { //将提示内容添加到ul
+    emailWrap.appendChild(li)
+    isEmpty()
+  }
+  //----------------------------------------------------------------------------
+  function isEmpty() {  //判断是否有内容
+    if(email_input.value){
+      show()
+    }else{
+      hidd()
+    }
+  }
+  function show() {
+    emailWrap.style.display = 'block'
+  }
+  function hidd() {
+    emailWrap.style.display = 'none'
+  }
+  //----------------------------------------------------------------------------
+  //.监听鼠标点击
+  emailWrap.addEventListener('click',(e) =>{
+     e = event || window.event
+    let t = e.target
+    let tText = t.innerHTML
+    email_input.value = tText
+    email_input.focus()
+    hidd()
+  })
+  //----------------------------------------------------------------------------
+  //对HTML字符转义与反转义
+  let HtmlUtil  = {
+    htmlEncode:function (html){
+      //1.首先动态创建一个容器标签元素，如DIV
+      var temp = document.createElement ("div");
+      //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+      (temp.textContent != undefined ) ? (temp.textContent = html) : (temp.innerText = html);
+      //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+      var output = temp.innerHTML;
+      temp = null;
+      return output;
+    },
+    htmlDecode:function (text){
+      //1.首先动态创建一个容器标签元素，如DIV
+      var temp = document.createElement("div");
+      //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+      temp.innerHTML = text;
+      //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+      var output = temp.innerText || temp.textContent;
+      temp = null;
+      return output;
+    }
+  }
+  //基于DOM的思路--------------------------------------------------------------------------
+  //重置选中状态
+/*  function resetli() {
+    let lis = emailWrap.children
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].className = ''
+
+    }
+    lis[0].className = 'first'
+    setBg()
+  }
+  //选择按键
+  function setBg() {
+    document.onkeydown = function (e) {
+      e = event || window.event
+      if(e && e.keyCode == 38){ //向上
+        let lis = emailWrap.children
+        let len = lis.length
+          if(lis[0].className != 'first'){
+            for (let i = 1; i < len; i++) {
+              if(lis[i].className == 'first'){
+                lis[i].className = ''
+                lis[i - 1].className ='first'
+                break
+              }
+            }
+          }else{
+            lis[0].className = ''
+            lis[len - 1].className ='first'
+          }
+      }
+      if(e && e.keyCode == 40){//向下
+        let lis = emailWrap.children
+        let len = lis.length
+        if(lis[len - 1].className != 'first'){
+          for (let i = 0; i < len; i++) {
+            if(lis[i].className == 'first'){
+              lis[i].className = ''
+              lis[i + 1].className ='first'
+              break
+            }
+          }
+        }else{
+          lis[len - 1].className = ''
+          lis[0].className ='first'
+        }
+      }
+      if(e && e.keyCode == 13){//回车
+        let lis = emailWrap.children
+        let len = lis.length
+        for (let i = 0; i < len; i++) {
+          if(lis[i].className == 'first'){
+            email_input.value = lis[i].innerHTML
+            hidd()
+            break
+          }
+        }
+      }
+    }
+  }*/
+  //--------------------------------------------------------------------------------
+ // 第二种基于数据的代码结构
+  function resetLibg() { //将第nowSelectTipIndex个Li的样式设置为被选样式
+    let lis = emailWrap.children
+    for (let i = 0; i < lis.length; i++) {
+      lis[i].className = ''
+    }
+    lis[nowSelectTipIndex].className = 'first'
+  }
+  document.onkeydown = function (e) {
+    let lis = emailWrap.children
+    let len = lis.length
+    e = event || window.event
+    if (e && e.keyCode == 38) { //向上
+      nowSelectTipIndex--
+      if (nowSelectTipIndex < 0) {
+        nowSelectTipIndex = len - 1
+      }
+      resetLibg()
+
+    }
+    if (e && e.keyCode == 40) {//向下
+      nowSelectTipIndex++
+      if (nowSelectTipIndex > len - 1) {
+        nowSelectTipIndex = 0
+      }
+      resetLibg()
+
+    }
+    if (e && e.keyCode == 13) {//回车
+      email_input.value = lis[nowSelectTipIndex].innerHTML
+      email_input.focus()
+      hidd()
+    }
+    if (e && e.keyCode == 27) {//ESC
+
+      email_input.select()
+      hidd()
+    }
+
+  }
+</script>
+</body>
+</html>
