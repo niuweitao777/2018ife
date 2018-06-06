@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="text/javascript" src="ife31data.js"></script>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #table-wrapper th{
+      border:1px solid #99a1ab ;
+      text-align: center;
+    }
+    #table-wrapper td{
+      border:1px solid #99a1ab ;
+      text-align: center;
+    }
+    #table-wrapper table{
+      border-spacing: 0 ;
+    }
+    #wrap{
+      width: 500px;
+      margin: 50px auto;
+    }
+    label{
+      margin-right: 20px;
+      line-height: 16px;
+
+    }
+    label input{
+      margin-left: 8px;
+
+    }
+    #wrap div{
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+<!--<select  id="region-select">
+  <option>选地区</option>
+  <option>华东</option>
+  <option>华北</option>
+  <option>华南</option>
+</select>
+<select  id="product-select">
+  <option>选商品</option>
+  <option>手机</option>
+  <option>笔记本</option>
+  <option>智能音箱</option>
+</select>-->
+<div id="wrap">
+  地区：
+  <div id="region-radio-wrapper"></div>
+  产品：
+  <div id="product-radio-wrapper"></div>
+  <div id="table-wrapper">
+  </div>
+</div>
+
+<script type="text/javascript" src="checkbox.js"></script>
+<script type="text/javascript" src="table.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript">
+ /* //表单
+  let reion_select = document.getElementById('region-select')
+  let product_select = document.getElementById('product-select')
+  let table_wrapper = document.getElementById('table-wrapper')
+  let table_head = ['商品', ' 地区', '1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月' ]
+  reion_select.addEventListener('change', () =>{
+    let data = getSelectData()//根据select选项获取数据
+    addTable(data) //渲染新的表格
+  })
+  product_select.addEventListener('change', () =>{
+    let data = getSelectData()//根据select选项获取数据
+    addTable(data) //渲染新的表格
+  })
+  function getSelectData() {
+    let regionIndex = reion_select.selectedIndex
+    let productIndex =  product_select.selectedIndex
+    let region = reion_select.options[regionIndex].text
+    let produc = product_select.options[productIndex].text
+    console.log(produc)
+    let arr = []
+    let len = sourceData.length
+    for (let i = 0; i < len; i++) {
+      if(sourceData[i].region == region && sourceData[i].product == produc){
+        console.log('xx')
+        arr.push(sourceData[i])
+      }
+    }
+    return arr
+  }
+  function addTable(data) {
+
+    let tableWrap = document.createElement('table')
+    let tableTr = document.createElement('tr')
+    let len = data.length
+    if(data[0]){
+      for (let i = 0; i < table_head.length; i++) {
+        let tableTh = document.createElement('th')
+        tableTh.innerHTML = table_head[i]
+        tableTr.appendChild(tableTh)
+        tableWrap.appendChild(tableTr)
+      }
+    }
+
+    for (let i = 0; i < len; i++) {
+      
+      let tr = document.createElement('tr')
+      let product = document.createElement('td')
+      product.innerHTML = data[i].product
+      tr.appendChild(product)
+      let region = document.createElement('td')
+      region.innerHTML = data[i].region
+      tr.appendChild(region)
+      for (let j = 0; j < data[i].sale.length; j++) {
+        let td = document.createElement('td')
+        td.innerHTML = data[i].sale[j]
+        tr.appendChild(td)
+        tableWrap.appendChild(tr)
+      }
+
+    }
+
+    table_wrapper.appendChild(tableWrap)
+  }*/
+
+/*----------------------------------------------------------------------------------------------------------*/
+//全选
+
+</script>
+</body>
+</html>
