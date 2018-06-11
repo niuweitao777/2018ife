@@ -18,7 +18,8 @@ window.onload = function () {
   /*横线间距*/
   this.across = 10
   /*坐标系间距*/
-
+/*最大*/
+    this.arrMax = 0
   /*原点坐标*/
   this.X0 = this.erectLine
   this.Y0 = this.canvasHeight - this.across
@@ -79,7 +80,6 @@ LineChatr.prototype = {
     }
 
     /*y轴*/
-
     this.ctx.beginPath()
     this.ctx.moveTo(this.X0,  this.Y0)
     this.ctx.lineTo(this.erectLine, this.across)
@@ -122,8 +122,10 @@ LineChatr.prototype = {
       this.ctx.clearRect(0, 0, 500, 300)
       this.drawGrid()
       this.drawAxis()
-      let arrMax = Math.max.apply(null, arr)
-      let scale = (this.canvasHeight - this.across * 2) / arrMax
+      this.arrMax = Math.max.apply(null, arr)
+
+      let scale = (this.canvasHeight - this.across * 2) / this.arrMax
+      this.getNumMax()
       for (let i = 0; i < arr.length; i++) {
 
         this.ctx.beginPath()
@@ -172,8 +174,9 @@ LineChatr.prototype = {
         maxArr.push(parseInt(td[i].innerText))
       }
     }
-    let max = Math.max.apply(null, maxArr)
-    let scale = (this.canvasHeight - 2 * this.across) / max
+    this.arrMax = Math.max.apply(null, maxArr)
+    this.getNumMax()
+    let scale = (this.canvasHeight - 2 * this.across) / this.arrMax
     let tr = document.getElementsByTagName('tr')
     for (var i = 1 ; i < tr.length; i++) {
       let prevCanX = 0
@@ -181,7 +184,6 @@ LineChatr.prototype = {
       let randomC = this.randomColor()
       let trs = tr[i].children
       for (var j = 2; j < trs.length; j++) {
-         console.log(trs[j])
         if(trs[j].value == 'month'){
           this.ctx.beginPath()
           let canX = j * this.erectLine
@@ -212,6 +214,19 @@ LineChatr.prototype = {
     let g = Math.floor(Math.random() * 256)
     let b = Math.floor(Math.random() * 256)
     return `rgb(${r},${g},${b})`
+  },
+  getNumMax() {
+    /*Y轴数值*/
+    let yLen = this.arrMax / this.across
+    let num = (this.canvasHeight-20) / this.across
+    for (var i = 0; i < 11; i++) {
+      this.ctx.beginPath()
+      if(i > 0){
+        this.ctx.fillText(`${i * yLen}`, this.X0, this.Y0 - i * num)
+      }
+      this.ctx.font = '10px Microsoft YaHei'
+      this.ctx.textAlign = 'right'
+    }
   }
 
 }
