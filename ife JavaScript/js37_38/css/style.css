@@ -1,0 +1,96 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+#table-wrapper th{
+  border:1px solid #99a1ab ;
+  text-align: center;
+}
+#table-wrapper td{
+  border:1px solid #99a1ab ;
+  text-align: center;
+}
+#table-wrapper table{
+  border-spacing: 0 ;
+  border:1px solid #99a1ab ;
+}
+#wrap{
+  width: 1100px;
+  margin: 50px auto;
+  position: relative;
+}
+label{
+  margin-right: 20px;
+  line-height: 16px;
+
+}
+label input{
+  margin-left: 8px;
+
+}
+#wrap div{
+  margin-bottom: 10px;
+}
+#table-wrapper table th,#table-wrapper table tr td {
+  width: 70px;
+  height: 30px;
+}
+#table-wrapper table tbody tr td{
+  position: relative;
+}
+#table-wrapper table tbody tr td:hover span{
+display: block;
+}
+#table-wrapper table tbody .confrim{ /*确定*/
+  z-index: 10;
+
+  border: none;
+  display: none;
+  position: absolute;
+  bottom: -70%;
+  left: 0;
+  width: 50%;
+}
+#table-wrapper table tbody .cancel{ /*取消*/
+
+  z-index: 10;
+  border: none;
+  display: none;
+  position: absolute;
+  bottom: -70%;
+  right: 0;
+  width: 50%;
+
+}
+#table-wrapper table tbody .redact{
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 66px;
+  height: 26px;
+  border: none;
+  display: none;
+
+
+}
+#table-wrapper table tbody .cancel:hover,#table-wrapper table tbody .confrim:hover{
+  background-color: #00aaff;
+  color: white;
+  cursor: pointer;
+}
+#table-wrapper table tbody td span{
+  font-size: 10px;
+  float: right;
+  line-height: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: none;
+}
+
+canvas{
+  border: 1px solid #99a1ab;
+
+  right: 0;
+  top: 0;
+}
