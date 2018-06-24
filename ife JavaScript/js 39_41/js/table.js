@@ -1,6 +1,5 @@
 //获取表单内容
 let table_wrapper = document.getElementById('table-wrapper')
-let data = []
 let regionArr = []
 let productArr = []
 inputReg[0].addEventListener('change',function () {
@@ -54,7 +53,6 @@ function getAdd() {
     }
   }
   renderTable(dataArr)
-  console.log(dataArr)
 }
 
 
